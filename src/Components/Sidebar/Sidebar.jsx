@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
 function Sidebar() {
   return (
     <aside className="sidebar">
       <ul>
-        <li>Início</li>
-        <li>Sobre</li>
-        <li>Contato</li>
+        <li><Link to="/">Início</Link></li>
+        <li><Link to="/sobre">Sobre</Link></li>
+        <li><Link to="/contato">Contato</Link></li>
       </ul>
     </aside>
   );
