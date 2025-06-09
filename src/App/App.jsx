@@ -1,34 +1,32 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Header from '../Components/Header/Header';
-import Sidebar from '../Components/Sidebar/Sidebar';
-import Footer from '../Components/Footer/Footer';
-
-import Home from '../Pages/Home/Home';
-import About from '../Pages/About/About';
-import Contact from '../Pages/Contact/Contact';
-
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from '../Pages/Login/Login';
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import Home from "../Pages/Home/Home";
+import About from "../Pages/About/About";
+import Contact from "../Pages/Contact/Contact";
+import ProtectedRoute from "../Components/ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Header />
-        <div className="main-content">
-          <Sidebar />
-          <div className="content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/sobre" element={<About />} />
-              <Route path="/contato" element={<Contact />} />
-            </Routes>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </Router>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Home />} />
+        <Route path="sobre" element={<About />} />
+        <Route path="contato" element={<Contact />} />
+      </Route>
+
+      {/* Rota padrão para quem acessa qualquer coisa desconhecida */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
   );
 }
 

@@ -6,9 +6,9 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <ul>
-        <li><Link to="/">Início</Link></li>
-        <li><Link to="/sobre">Sobre</Link></li>
-        <li><Link to="/contato">Contato</Link></li>
+        <li><Link to="/dashboard/">Início</Link></li>
+        <li><Link to="/dashboard/sobre">Sobre</Link></li>
+        <li><Link to="/dashboard/contato">Contato</Link></li>
       </ul>
     </aside>
   );
