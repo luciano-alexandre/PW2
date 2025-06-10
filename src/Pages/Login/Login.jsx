@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Context/AuthContext";
-import "./Login.css"; 
+import { useDispatch } from "react-redux";
+import { login } from "../../Store/authSlice";
+import "./Login.css";
 
 const users = [
   { username: "admin", password: "123" },
@@ -12,22 +13,22 @@ function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); 
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     const user = users.find(
       (u) =>
         u.username === credentials.username &&
         u.password === credentials.password
     );
-    
+
     if (user) {
-      login();
+      dispatch(login());
       navigate("/dashboard");
     } else {
       setError("Usuário ou senha inválidos");

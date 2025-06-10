@@ -1,14 +1,15 @@
-import { useAuth } from "../../Context/AuthContext";
+import { useDispatch } from "react-redux";
+import { logout } from "../../Store/authSlice";
 import { useNavigate } from "react-router-dom";
 
 import './Header.css';
 
 function Header() {
-  const { logout } = useAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
   };
 
